@@ -30,7 +30,7 @@ pdftoppm -tiff -r 300 "$PDF_PATH" "$OUTPUT_DIR/$PDF_NAME"
 # Loop über jedes Bild im Ausgabeordner und OCR durchführen
 for IMAGE in "$OUTPUT_DIR"/*.{tif,tiff}; do
    echo "Processing image: $IMAGE"
-   tesseract "$IMAGE" stdout -l "$LANG" >> "$OUTPUT"
+   tesseract "$IMAGE" stdout -l "$LANG" --oem 3 --psm 6 >> "$OUTPUT"
 done
 
 # Löschen der Bilder im Ausgabeordner
