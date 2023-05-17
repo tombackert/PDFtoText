@@ -24,11 +24,11 @@ OUTPUT="/Users/tom.backert/Desktop/${PDF_NAME}_ocr_output.txt"
 mkdir -p "$OUTPUT_DIR"
 mkdir -p "$WORKFLOW_DIR"
 
-# Konvertieren der PDF in TIFF-Bilder und Speichern im Ausgabeordner
-pdftoppm -tiff -r 300 "$PDF_PATH" "$OUTPUT_DIR/$PDF_NAME"
+# Konvertieren der PDF in Bilder jpeg mit 400 dpi
+pdftoppm -jpeg -r 400 "$PDF_PATH" "$OUTPUT_DIR/$PDF_NAME"
 
 # Loop über jedes Bild im Ausgabeordner und OCR durchführen
-for IMAGE in "$OUTPUT_DIR"/*.{tif,tiff}; do
+for IMAGE in "$OUTPUT_DIR"/*.{jpeg,jpg}; do
     echo "Processing image: $IMAGE"
     tesseract "$IMAGE" stdout -l "$LANG" >> "$OUTPUT"
 done
